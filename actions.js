@@ -56,9 +56,10 @@ const search = () => {
     type: 'SEARCH'
   }
 }
-const select = () => {
+const select = (song) => {
   return {
-    type: 'SELECT'
+    type: 'SELECT',
+    song: song
   }
 }
 /********************************************

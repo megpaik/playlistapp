@@ -34,12 +34,23 @@ userSchema.statics.addUser = function(name, username, password, cb) {
 
 userSchema.statics.checkLogin = function(username, password, cb) {
   this.findOne({ username: username}, function(err, user) {
+    if (err) throw err;
     if (!user) cb('No account');
     else {
       bcrypt.compare(password, this.password, function(err, isRight) {
         if (err) return cb(err);
         cb(null, isRight);
       });
+    }
+  });
+}
+
+userSchema.statics.getName = function(username) {
+  this.findOne({ username: username}, function(err, user) {
+    if (err) throw err;
+    if (!user) throw new Error('no user');
+    else { 
+      return this.name;
     }
   });
 }
