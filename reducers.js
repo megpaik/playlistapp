@@ -6,6 +6,10 @@ const mainReducer = (state, action) => {
     // communicate with mongoose
   }
 
+  case 'LINK_REGISTER': {
+
+  }
+
   case 'REGISTER': {
     // re route to a new view with registration
     // add to DB
@@ -15,5 +19,40 @@ const mainReducer = (state, action) => {
   case 'CREATE_ROOM': {
   }
 
+  case 'JOIN_ROOM': {
+    
+  }
+
+  case 'ADD_SONG': {
+    
+  }
+
+  case 'VETO': {
+
+  }
+
+  case 'SAVE': {
+    
+  }
+
+  case 'SEARCH': {
+    
+  }
+
+  case 'SELECT': {
+    
+  }
+
+  case 'PLAY': {
+    
+  }
+
+  case 'PREV_SONG': {
+    
+  }
+
+  case 'NEXT_SONG': {
+    
+  }
   }
 }

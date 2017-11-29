@@ -1,40 +1,81 @@
-const login = (id, password) => {
+//TODO: encrypt password here once
+const login = (username, password) => {
   return {
     type: 'LOGIN',
-    id: id,
+    username: username,
     password: password
   };
 };
-
-const register = () => {
+// this changes the view to the registration screen
+const linkRegister = () => {
   return {
-    type: 'REGISTER'
+    type: 'LINK_REGISTER'
   };
 };
-
+const register = (name, username, password) => {
+  return {
+    type: 'REGISTER',
+    name: name,
+    username: username,
+    password: password
+  }
+}
 const createRoom = () => {
   return  {
     type: 'CREATE_ROOM'
   };
 };
-
-const joinRoom = (code) => {
+const joinRoom = (room) => {
   return {
     type: 'JOIN_ROOM',
-    code: code
+    code: room
   };
 };
-
 // this should reroute to the search page
 const addSong = () => {
   return {
     type: 'ADD_SONG'
   };
 };
-
 const veto = (song) => {
   return {
     type: 'VETO',
     song: song
   };
 };
+const save = () => {
+  return {
+    type: 'SAVE'
+  }
+}
+/********************************************
+ **************** SEARH PAGE ****************
+ ********************************************/
+const search = () => {
+  return {
+    type: 'SEARCH'
+  }
+}
+const select = () => {
+  return {
+    type: 'SELECT'
+  }
+}
+/********************************************
+ ********** MUSIC PLAYER CONTROLS************
+ ********************************************/
+const play = () => {
+  return {
+    type: 'PLAY'
+  }
+};
+const prevSong = () => {
+  return {
+    type: 'PREV_SONG'
+  }
+};
+const nextSong = () => {
+  return {
+    type: 'NEXT_SONG'
+  };
+}
