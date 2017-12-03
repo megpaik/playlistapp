@@ -1,4 +1,3 @@
-//TODO: encrypt password here once
 const login = (username, password) => {
   return {
     type: 'LOGIN',
@@ -43,9 +42,11 @@ const veto = (song) => {
     song: song
   };
 };
-const save = () => {
+const save = (username, songlist) => {
   return {
-    type: 'SAVE'
+    type: 'SAVE',
+    username: username,
+    songlist: songlist
   }
 }
 /********************************************

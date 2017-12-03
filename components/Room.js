@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button, ScrollView } from 'react-native';
 
-export default class Protected extends React.Component {
+export default class Room extends React.Component {
   render() {
     return (
       <View style={styles.container}>
