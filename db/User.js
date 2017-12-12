@@ -59,7 +59,8 @@ userSchema.statics.addPlaylist = function(username, playlist, cb) {
   this.findOne({ username: username}, function(err, user) {
     if (err) cb(err);
     if (!user) cb(new Error('no user'));
-    user.playlists = _.extend(user.playlists, { playlist.name.hashCode: playlist });
+    var hashed = playlist.name.hashCode();
+    user.playlists = _.extend(user.playlists, { [hashed]: playlist });
     user.save(function(err) {
       if (err) throw err;
       console.log('User successfully updated!');

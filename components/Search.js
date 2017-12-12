@@ -1,7 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button, FlatList } from 'react-native';
 
-export default class Protected extends React.Component {
+export default class Search extends React.Component {
+  constructor() {
+    super();
+    
+  }
+ 
   render() {
     return (
       <View style={styles.container}>

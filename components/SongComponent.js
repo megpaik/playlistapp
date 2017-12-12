@@ -2,24 +2,24 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import * as actions from '../actions.js';
 
-export default class Register extends React.Component {
+export default class SongComponent extends React.Component {
 
   constructor() {
     super();
     this.onClick = this.onClick.bind(this);
   }
-  
-  onClick(name, username, password) {
-    this.props.store.dispatch(actions.register(name, username, password));
+
+  onClick() {
+    var song = {title: this.props.title, artist: this.props.artist, url: this.props.url};
+    this.props.store.dispatch(actions.veto(song));
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <TextInput title="name" placeholder="Name" />
-        <TextInput title="username" placeholder="Username" />
-        <TextInput title="password" placeholder="Password" />
-        <Button title="REGISTER" onPress={() => this.onClick(name, username, password)} />
+        <Text> {this.props.title} </Text>
+        <Text> {this.props.artist} </Text>
+        <Button title="Veto" onPress={this.onClick} />
       </View>
     );
   }

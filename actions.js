@@ -19,9 +19,10 @@ const register = (name, username, password) => {
     password: password
   }
 }
-const createRoom = () => {
+const createRoom = (name) => {
   return  {
-    type: 'CREATE_ROOM'
+    type: 'CREATE_ROOM',
+    name: name
   };
 };
 const joinRoom = (room) => {
@@ -52,9 +53,10 @@ const save = (username, songlist) => {
 /********************************************
  **************** SEARH PAGE ****************
  ********************************************/
-const search = () => {
+const search = (query) => {
   return {
-    type: 'SEARCH'
+    type: 'SEARCH',
+    query: query
   }
 }
 const select = (song) => {

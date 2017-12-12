@@ -1,21 +1,20 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button, ScrollView } from 'react-native';
+import SongList from './SongList';
+import AudioPlayer from './AudioPlayer';
 
 export default class Room extends React.Component {
+  constructor() {
+    super();
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <Text> Room: {this.state.room} </Text>
-        <ScrollView>
-          <Text> Current Songs </Text>
-          <Button> + </Button>
-          <Button> Save Playlist </Button>
-        </ScrollView>
-        <View style={styles.container}>
-          <Video> This should be the music player </Video>
-        </View>
+        <SongList store={this.props.store}/>
+        <AudioPlayer store={this.props.store}/>
       </View>
-
     );
   }
 }

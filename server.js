@@ -1,9 +1,10 @@
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-var login = require('./routes/login');
-var register = require('./routes/register');
-var save = require('./routes/save');
+var login = require('./routers/login');
+var register = require('./routers/register');
+var save = require('./routers/save');
+var port = process.env.PORT || 3000;
 
 app.get('/', function(req, res){
   res.send('Hello world');
@@ -38,7 +39,7 @@ app.use('/', login);
 app.use('/', register);
 app.use('/', save);
 
-http.listen(3000, function(){
+http.listen(port, function(){
   console.log('Magic happens on Port 3000');
 });
     
