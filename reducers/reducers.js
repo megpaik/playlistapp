@@ -18,53 +18,23 @@ import * as uuid from 'uuid';
 //     return _.assign({}, state, songs)  
 //   });
 // }
+const initialState = {
+    songs: [{title: "Hello", artist: "Adele", url:""}],
+    currentlyPlaying: {
+      title: null,
+      artist: null
+    },
+}
 
-const mainReducer = (state, action) => {
+const mainReducer = (state = initialState, action) => {
   switch (action.type) {
-  case 'LOGIN': {
-    fetch("/login", {
-      method: "POST",
-      body: {username: action.username, password: action.password}
-    }).then((res) => {
-      if (res.status === 400) return state;
-      return _.assign({}, state, {name: res.body.name, username: res.body.username});
-    }).catch((err) => { throw err });
-  }
-  
-  case 'LINK_REGISTER': {
-    // change view to registration
-  }
-
-  case 'REGISTER': {
-    fetch('/register', {
-      method: 'POST',
-      body: {name: action.name, username: action.username, password: action.password}
-    }).then((res) => {
-      if (res.status === 202) {
-        var cred = {name: res.body.name, username: res.body.username};
-        return _.assign({}, state, cred);
-      }
-    });
-  }
-
-  case 'CREATE_ROOM': {
-    var code = Math.random().toString(36).substring(7);
-    socket.emit('room', code);
-    return _.assign({}, state, {room: code});
-    // redirect
-  }
-
-  case 'JOIN_ROOM': {
-    socket.emit('room', action.room);
-    return _.assign({}, state, {room: action.room});
-  }
 
   case 'ADD_SONG': {
     //redirect
   }
 
   case 'VETO': {
-    socket.emit('song_vetoed', action.song);
+    // socket.emit('song_vetoed', action.song);
     return state;
   }
 
@@ -77,19 +47,12 @@ const mainReducer = (state, action) => {
 /********************************************
  **************** SEARH PAGE ****************
  ********************************************/
-  case 'SEARCH': {
-    const SC_KEY = '2t9loNQH90kzJcsFCODdigxfp325aq4z';
-    const limit = 10;
-    var query = action.query;
-    fetch(`https://api-v2.soundcloud.com/search/tracks?q=${query}&client_id=${SC_KEY}&limit=${limit}&offset=${page*limit}&linked_partitioning=1`
-  ).then(res => res.json())
-   .then(json => new Promise((resolve, reject) => {
-       resolve(json);
-   }));
-  }
-
+  case 'FOUND_SONGS':
+  const {songs} = action;
+  var updated = (songs.map((song, i) => {return {title: song.title, artist: song.artist, url: song.url}}));
+  return _.assign({}, state, {search: updated});
   case 'SELECT': {
-    socket.emit('song_added', action.song);
+    // socket.emit('song_added', action.song);
   }
 /********************************************
  ********** MUSIC PLAYER CONTROLS************
@@ -105,7 +68,10 @@ const mainReducer = (state, action) => {
   case 'NEXT_SONG': {
     
   }
+  default: {
+    return state;
+  }
   }
 
 }
-export {mainReducer}
+export default mainReducer;

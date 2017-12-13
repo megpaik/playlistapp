@@ -3,6 +3,7 @@ var router = express.Router();
 var User = require('../db/User');
 
 router.post('/register', function (req, res, next) {
+  console.log('request received');
   var name = req.body.name;
   var username = req.body.username;
   var password = req.body.password;

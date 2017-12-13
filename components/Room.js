@@ -1,19 +1,16 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button, ScrollView } from 'react-native';
+import { connect } from 'react-redux';
 import SongList from './SongList';
 import AudioPlayer from './AudioPlayer';
 
-export default class Room extends React.Component {
-  constructor() {
-    super();
-  }
-
+class RoomView extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text> Room: {this.state.room} </Text>
-        <SongList store={this.props.store}/>
-        <AudioPlayer store={this.props.store}/>
+        <Text> Test </Text>
+        <SongList songs={this.props.songs}/>
+        <AudioPlayer />
       </View>
     );
   }
@@ -27,3 +24,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+const mapStatetoProps = state => {
+  songs: state.songs
+}
+
+const Room = connect(mapStatetoProps, null)(RoomView);
+
+export default Room;

@@ -1,13 +1,6 @@
 import { NavigationActions } from "react-navigation";
 
-import AppNavigator, { Tabs } from "../Navigation/navigationStack";
-import {
-  Login,
-  Logout,
-  Register,
-  RegisterSuccess,
-  NavigateToLogoutScreen
-} from "../Actions/actionTypes";
+import AppNavigator, { Tabs } from "../navigation/navigationStack";
 
 const ActionForLoggedOut = AppNavigator.router.getActionForPathAndParams(
   "login"
@@ -32,7 +25,7 @@ const navigationReducer = (state = initialState, action) => {
   let nextState;
 
   switch (action.type) {
-    case Login:
+    case 'LOGIN':
       return {
         ...state,
         stateForLoggedIn: AppNavigator.router.getStateForAction(
@@ -41,16 +34,16 @@ const navigationReducer = (state = initialState, action) => {
         )
       };
 
-    case Register:
+    case 'LINK_REGISTER':
       return {
         ...state,
         stateForLoggedOut: AppNavigator.router.getStateForAction(
-          AppNavigator.router.getActionForPathAndParams("signup"),
+          AppNavigator.router.getActionForPathAndParams("register"),
           stateForLoggedOut
         )
       };
 
-    case RegisterSuccess:
+    case 'REGISTER_SUCCESS':
       return {
         ...state,
         stateForLoggedIn: AppNavigator.router.getStateForAction(
@@ -58,7 +51,7 @@ const navigationReducer = (state = initialState, action) => {
             index: 2,
             actions: [
               NavigationActions.navigate({ routeName: "login" }),
-              NavigationActions.navigate({ routeName: "signup" }),
+              NavigationActions.navigate({ routeName: "register" }),
               NavigationActions.navigate({ routeName: "mainScreens" })
             ]
           })
@@ -87,7 +80,7 @@ const navigationReducer = (state = initialState, action) => {
         )
       };
 
-    case Logout:
+    case 'LOGOUT':
       return {
         ...state,
         stateForLoggedOut: AppNavigator.router.getStateForAction(
@@ -107,7 +100,7 @@ const navigationReducer = (state = initialState, action) => {
             break;
     */
 
-    case NavigateToLogoutScreen:
+    case 'NAVIGATE_TO_LOGOUT':
       return {
         ...state,
         stateForLoggedIn: {
