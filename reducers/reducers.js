@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import * as uuid from 'uuid';
 
-var socket = io('http://localhost:3000');
+// var socket = io('http://localhost:3000');
 
 // THIS IS SO WRONG FIX IT
 // const socketListeners = (state, action) => {
@@ -107,5 +107,5 @@ const mainReducer = (state, action) => {
   }
   }
 
-  export {mainReducer, socketListeners}
 }
+export {mainReducer}

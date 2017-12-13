@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createStore } from 'redux';
-import { mainReducer as reducers } from '/.reducers'
+import { mainReducer as reducers } from './reducers'
 import * as initialState from './initialState';
 import * as actions from './actions'
 import Login from './components/Login'
